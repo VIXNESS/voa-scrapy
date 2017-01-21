@@ -9,11 +9,10 @@ import MySQLdb
 
 class VoaPipeline(object):
     def dbsql(self,item):
-        db = MySQLdb.connect("your host", "user", "your password", "your schema")
+        db = MySQLdb.connect("your host", "user", "your password", "your schema")#数据库链接
         consor = db.cursor()
-        #INSERT INTO `mainschema`.`all` (`title`, `date`, `categories`, `tags`, `url`) VALUES ('q', 'w', 'r', 't', 'u');
         sql = "INSERT INTO `mainschema`.`all` (`title`, `date`, `categories`, `tags`, `url`) VALUES ('%s', '%s', '%s', '%s', '%s');" % (item['vtitle'], item['vdate'], item['vcategory'], item['vtag'],item['vlink'])
-        print sql
+        #写入数据库
         try:
             consor.execute(sql)
             db.commit()
